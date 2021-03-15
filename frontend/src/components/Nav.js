@@ -4,8 +4,7 @@ import {Link} from "react-router-dom";
 function Nav() {
   return (
     <nav>
-        <h3>carShare</h3>
-        <ul className="nav-links">
+        <ul className="menu-bar">
             <Link to="/about">
                 <li>About</li>
             </Link>
