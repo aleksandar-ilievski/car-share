@@ -1,9 +1,20 @@
-import React from "react";
-import {Card,Button} from "react-bootstrap";
+import React, { useState } from "react";
 import Nav from "../NavBar/Nav";
 import "./home.css";
+import "lodash";
+import MapboxAutocomplete from 'react-mapbox-autocomplete';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 function Home() {
+
+  const [date, setDate] = useState(new Date());
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
+
+  function _suggestionSelect(result, lat, lng, text) {
+    console.log(result, lat, lng, text)
+  }
   return (
     <>
       <div className="bgimg">
@@ -16,124 +27,32 @@ function Home() {
             </h1>
           </div>
           <div className="row textCenter">
-            <div className="col-4">
-              <select className="select-css" placeholder="City">
-                <option value="volvo">Volvo</option>
-                <option value="saab">Saab</option>
-                <option value="vw">VW</option>
-                <option value="audi" selected>
-                  Where
-                </option>
-              </select>
-            </div>
-            <div className="col-4">
-              <select className="select-css" placeholder="Date Start">
-                <option value="volvo">Volvo</option>
-                <option value="saab">Saab</option>
-                <option value="vw">VW</option>
-                <option value="audi" selected>
-                  From
-                </option>
-              </select>
-            </div>
-            <div className="col-4">
-              <select className="select-css" placeholder="Date End">
-                <option value="volvo">Volvo</option>
-                <option value="saab">Saab</option>
-                <option value="vw">VW</option>
-                <option value="audi" selected>
-                  Until
-                </option>
-              </select>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="bottomScrol">
-        <div className="icon-scroll"></div>
-      </div>
-      <br/><br/>
-      <div className="container">
-        <div className="row">
-          <div className="col-md-4">
-            <Card style={{ width: "18rem" }}>
-              <Card.Img variant="top" src="images/bike.jpg" />
-              <Card.Body>
-                <Card.Title>Card Title</Card.Title>
-                <Card.Text>
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
-                </Card.Text>
-                <Button variant="primary">Go somewhere</Button>
-              </Card.Body>
-            </Card>
-          </div>
-          <div className="col-md-4">
-          <Card style={{ width: "18rem" }}>
-              <Card.Img variant="top" src="images/bike1.jpg" />
-              <Card.Body>
-                <Card.Title>Card Title</Card.Title>
-                <Card.Text>
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
-                </Card.Text>
-                <Button variant="primary">Go somewhere</Button>
-              </Card.Body>
-            </Card>
-          </div>
-          <div className="col-md-4">
-          <Card style={{ width: "18rem" }}>
-              <Card.Img variant="top" src="images/bike2.jpg" />
-              <Card.Body>
-                <Card.Title>Card Title</Card.Title>
-                <Card.Text>
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
-                </Card.Text>
-                <Button variant="primary">Go somewhere</Button>
-              </Card.Body>
-            </Card>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-md-4">
-            <Card style={{ width: "18rem" }}>
-              <Card.Img variant="top" src="images/bike.jpg" />
-              <Card.Body>
-                <Card.Title>Card Title</Card.Title>
-                <Card.Text>
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
-                </Card.Text>
-                <Button variant="primary">Go somewhere</Button>
-              </Card.Body>
-            </Card>
-          </div>
-          <div className="col-md-4">
-          <Card style={{ width: "18rem" }}>
-              <Card.Img variant="top" src="images/bmwm3.jpg" />
-              <Card.Body>
-                <Card.Title>Card Title</Card.Title>
-                <Card.Text>
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
-                </Card.Text>
-                <Button variant="primary">Go somewhere</Button>
-              </Card.Body>
-            </Card>
-          </div>
-          <div className="col-md-4">
-          <Card style={{ width: "18rem" }}>
-              <Card.Img variant="top" src="images/bmw3.jpg" />
-              <Card.Body>
-                <Card.Title>Card Title</Card.Title>
-                <Card.Text>
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
-                </Card.Text>
-                <Button variant="primary">Go somewhere</Button>
-              </Card.Body>
-            </Card>
+            <MapboxAutocomplete 
+              publicKey="pk.eyJ1IjoiYWxla3NhbmRhcjQ2IiwiYSI6ImNrbjk0d3dlNzBhZzQyeG1ydWhyZjB1azEifQ.xAOI3OiwXjB4AAhkSe7vXw"
+              inputClass='form-control search'
+              country='mk'
+              onSuggestionSelect={_suggestionSelect}
+              resetSearch={false}
+              
+            />
+            <DatePicker
+              placeholderText="Select Start Date" 
+              selected={startDate}
+              minDate={date}
+              selectsStart
+              startDate={startDate}
+              endDate={endDate}
+              onChange={date => setStartDate(date)}
+            />
+            <DatePicker
+              placeholderText="Select End Date"
+              selected={endDate}
+              selectsEnd
+              startDate={startDate}
+              endDate={endDate}
+              minDate={startDate}
+              onChange={date => setEndDate(date)}
+            /> 
           </div>
         </div>
       </div>

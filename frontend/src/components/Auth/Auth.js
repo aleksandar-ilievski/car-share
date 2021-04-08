@@ -11,11 +11,11 @@ export default function Auth() {
                 <h2>Welcome back</h2>
                 <label>
                 <span>Email</span>
-                <input type="email" />
+                <input className="inptGroup" type="email" />
                 </label><br/>
                 <label>
                 <span>Password</span>
-                <input type="password" />
+                <input className="inptGroup" type="password" />
                 </label><br/><br/>
                 <button type="button" class="submit">Sign In</button>
             </div>

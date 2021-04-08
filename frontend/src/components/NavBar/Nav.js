@@ -7,13 +7,13 @@ function Nav() {
     <nav>
         <ul className="menu-bar" >
             <Link to="/about" style={{ textDecoration: 'none' }}>
-                <li>About</li>
+                <li>How it works</li>
             </Link>
             <Link to="/carlist" style={{ textDecoration: 'none' }}>
-                <li>CarList</li>
+                <li>List your car</li>
             </Link>
             <Link to="/auth" style={{ textDecoration: 'none' }}>
-                <li>Log In</li>
+                <li>Sign in</li>
             </Link>
         </ul>
     </nav>
