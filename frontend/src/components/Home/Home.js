@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Nav from "../NavBar/Nav";
+import { useHistory } from 'react-router-dom';
 import "./home.css";
 import "lodash";
 import MapboxAutocomplete from 'react-mapbox-autocomplete';
@@ -9,20 +10,29 @@ import "react-datepicker/dist/react-datepicker.css";
 function Home() {
 
   const [date, setDate] = useState(new Date());
-  const [startDate, setStartDate] = useState(null);
+  const [startDate, setStartDate] = useState();
   const [endDate, setEndDate] = useState(null);
+  const [city, setCity] = useState("");
+  const history = useHistory();
 
   function _suggestionSelect(result, lat, lng, text) {
-    console.log(result, lat, lng, text)
+    result = result.split(",")[0];
+    setCity(result);
+  } 
+  function searchCar(){
+    let dateStart = startDate ? startDate.toDateString() : new Date().toDateString()
+    let dateEnd = endDate ? endDate.toDateString() : new Date().toDateString()
+    console.log(city+", "+dateStart+", "+dateEnd);
+    history.push('/carlist');
   }
   return (
-    <>
-      <div className="bgimg">
-      <header><Nav /></header>
+    <div className="bgimg">
+      <Nav />
+      <div className="sve">
         <div className="container">
           <div className="row textCenter">
             <h1>
-              <span style={{ color: "white" }}>FIND THE PERFECT</span> CAR FOR
+              FIND <span style={{ color: "rgb(151,6,44)" }}>THE PERFECT</span> CAR FOR
               YOU
             </h1>
           </div>
@@ -33,8 +43,8 @@ function Home() {
               country='mk'
               onSuggestionSelect={_suggestionSelect}
               resetSearch={false}
-              
             />
+            <div className="date1">
             <DatePicker
               placeholderText="Select Start Date" 
               selected={startDate}
@@ -43,7 +53,8 @@ function Home() {
               startDate={startDate}
               endDate={endDate}
               onChange={date => setStartDate(date)}
-            />
+            /></div>
+            <div className="date2">
             <DatePicker
               placeholderText="Select End Date"
               selected={endDate}
@@ -52,11 +63,14 @@ function Home() {
               endDate={endDate}
               minDate={startDate}
               onChange={date => setEndDate(date)}
-            /> 
+            /></div>
+            <div className="gobtn" onClick={searchCar}>
+              <p>GO!</p>
+            </div> 
           </div>
         </div>
-      </div>
-    </>
+        </div>
+    </div>
   );
 }
 

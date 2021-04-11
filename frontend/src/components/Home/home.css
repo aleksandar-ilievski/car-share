@@ -1,9 +1,18 @@
-.bgimg {
-    display: flex;
-    width: 100%;
-    height: 100vh;
-    align-items: center;
-    justify-content: center;
+@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap');
+.bgimg{
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  background-image: url(https://images.pexels.com/photos/164634/pexels-photo-164634.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  z-index: -1;
+}
+.sve{
+  display: flex;
+  min-height: 80%;
+  min-width: 100%;
+  align-items: center;
 }
 .textCenter{
     justify-content: center;
@@ -12,14 +21,17 @@
     text-decoration: white;
 }
 .container{
+  display: block;
   background: rgba(255, 255, 255, 0.3);
   backdrop-filter: blur(5px);
   padding: 2rem;
   border-radius: 20px;
+  align-items: center;
   justify-content: space-around;
 }
 .react-mapbox-ac-menu {
   width: auto;
+  height: calc(1.5em + 0.75rem + 25px);
   position: absolute;
   z-index: 9999;
   background-color: #fff;
@@ -32,6 +44,10 @@
 .react-mapbox-ac-input {
   margin-bottom: 1.5rem;
 }
+
+.form-control.search.react-mapbox-ac-input{
+  height: calc(1.5em + 0.75rem + 25px);
+}
  
 .react-mapbox-ac-suggestion {
   font-size: 18px;
@@ -42,14 +58,14 @@
 }
  
 .react-mapbox-ac-suggestion:hover {
-  background-color: #58a;
+  background-color: rgb(151,6,44);
 }
 
 .react-datepicker-wrapper,
  .react-datepicker__input-container,
  .react-datepicker__input-container input {
     width: 215px;
-    height: calc(1.5em + 0.75rem + 2px);
+    height: calc(1.5em + 0.75rem + 25px);
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
@@ -58,3 +74,35 @@
     border: 1px solid #ced4da;
     border-radius: 0.25rem;
  }
+
+ .date1 {
+  margin: 0 5px;
+  padding: 0 5px;
+ }
+
+.gobtn {
+  display: flex;
+  width: 75px;
+  height: calc(1.5em + 0.75rem + 25px);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  background-color: white;
+  margin-left: 5px;
+  text-align: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.gobtn p{
+  width: 100%;
+  padding-top: 15px;
+  font-family: 'Kaushan Script', cursive;
+  font-size: 25px;
+  font-weight: bold;
+  color: rgb(151,6,44);
+}
