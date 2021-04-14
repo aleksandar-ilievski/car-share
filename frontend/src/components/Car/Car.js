@@ -7,7 +7,7 @@ import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 import { DateRangePicker } from 'react-dates';
 import { useSelector, useDispatch } from 'react-redux';
-import { CircularProgress } from '@material-ui/core';
+import {Link} from "react-router-dom";
 import moment from "moment";
 import { updatePost } from "../../api";
 
@@ -221,14 +221,18 @@ function Car() {
               ) : (
                 <>
                 <div>Car Booked</div>
-                
-                <div>{post.likes}</div>
+                <Link to="/rental">
+                 <button>Check Your Rentals</button>
+                </Link>
                 </>
               )
                 
             ):
+
                 <div className="rental-form-login">
+                <Link to="/auth">
                     <button>Please Login to Rent!</button>
+                </Link>
                 </div>
             }
                 

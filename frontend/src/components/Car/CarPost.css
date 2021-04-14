@@ -9,6 +9,7 @@
     height: 95vh;
     width: 100%;
     position: relative;
+    z-index: -1;
   }
   .car-show-main-section {
     display: flex;
