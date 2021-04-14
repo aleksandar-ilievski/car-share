@@ -1,0 +1,73 @@
+.rental-index-container {
+    background: white;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2vw;
+    min-height: 42vh;
+  }
+  .rental-index-tile {
+    box-shadow: 1px 2px 4px 4px #888888;
+    margin: 15px 0 15px 0;
+    width: 60vw;
+    background: #fafafa;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .car-make-model-year-container {
+    justify-content: space-between;
+    max-width: 392px;
+  }
+  .car-make-model {
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: -.5px;
+    line-height: 24px;
+    text-overflow: ellipsis;
+    text-transform: uppercase;
+  }
+  .rental-index-tile-details {
+    color: #231F20;
+    font-family: BasisGrotesque,Avenir,Helvetica Neue,Helvetica,sans-serif;
+    display: flex;
+    justify-content: space-between;
+  }
+  .rental-index-ul {
+    line-height: 2;
+    margin: 20px 12px 0 12px;
+    list-style-type: none;
+  }
+  .rental-index-ul {
+    padding-left: 0px;
+    line-height: 2;
+    margin: 20px 12px 0 12px;
+  }
+  .rental-index-tile-btns {
+    display: flex;
+    flex-direction: column;
+  }
+  .rental-index-tile-btns .rental-cancel-btn {
+    border: none;
+    color: white;
+    background-color: #e92727;
+    font-family: BasisGrotesque,Avenir,Helvetica Neue,Helvetica,sans-serif;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 16px;
+    opacity: 0.8;
+    transition: 0.7s;
+    height: 20%;
+    padding: 5px;
+    width: 130px;
+    margin: 5px;
+  }
+  .car-index-photo {
+    width: 27vw;
+    height: 27vh;
+    border-radius: 10px;
+    overflow: hidden;
+    object-fit: cover;
+}

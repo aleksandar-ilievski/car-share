@@ -43,14 +43,17 @@ function Nav() {
                 <li>How it works</li>
             </Link>
             <Link to="/carlist" style={{ textDecoration: 'none' }}>
-                <li>List your car</li>
+                <li>Listed Cars</li>
             </Link>
             {user?.result ? (
                 <ul id="menu">
-                    <li><Avatar style={{color: 'rgb(151,6,44)'}}>{user?.result.name.charAt(0)}</Avatar>
+                    <li><Link to="/profile" style={{ textDecoration: 'none', minWidth: "100px" }}><Avatar style={{color: 'rgb(151,6,44)'}}>{user?.result.name.charAt(0)}</Avatar></Link>
                         <ul>
                         <Link to="/profile" style={{ textDecoration: 'none', minWidth: "100px" }}>
                         <li><button>{user.result.name}</button></li>
+                        </Link>
+                        <Link to="/rental" style={{ textDecoration: 'none', minWidth: "100px" }}>
+                        <li><button>Your Rentals</button></li>
                         </Link>
                         <Link to="/" style={{ textDecoration: 'none', minWidth: "100px" }}>
                         <li><button onClick={logout} >Log out</button></li>

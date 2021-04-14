@@ -1,62 +1,277 @@
-import React from 'react';
-import "./Car.css";
+import React, { useEffect, useState } from "react";
+import Nav from "../NavBar/Nav";
+import { likePost, getPosts } from '../../actions/posts';
+import "./CarPost.css";
+import { Avatar } from "@material-ui/core";
+import 'react-dates/initialize';
+import 'react-dates/lib/css/_datepicker.css';
+import { DateRangePicker } from 'react-dates';
+import { useSelector, useDispatch } from 'react-redux';
+import { CircularProgress } from '@material-ui/core';
+import moment from "moment";
+import { updatePost } from "../../api";
 
-const Car = () => {
-    return (
-        <div>
-        <div className="cardBody">
-        <div className="cardBody1">
-            <div className="cardBody2">
-                <div className="cardBody3">
-                    <div className="cardBody4">
-                        <div className="cardBody5">
-                            <svg className="cardBody6"  viewBox="0 0 24 24">
-                            <path d="M3.936,7.979c-1.116,0-2.021,0.905-2.021,2.021s0.905,2.021,2.021,2.021S5.957,11.116,5.957,10
-								S5.052,7.979,3.936,7.979z M3.936,11.011c-0.558,0-1.011-0.452-1.011-1.011s0.453-1.011,1.011-1.011S4.946,9.441,4.946,10
-								S4.494,11.011,3.936,11.011z M16.064,7.979c-1.116,0-2.021,0.905-2.021,2.021s0.905,2.021,2.021,2.021s2.021-0.905,2.021-2.021
-								S17.181,7.979,16.064,7.979z M16.064,11.011c-0.559,0-1.011-0.452-1.011-1.011s0.452-1.011,1.011-1.011S17.075,9.441,17.075,10
-								S16.623,11.011,16.064,11.011z M10,7.979c-1.116,0-2.021,0.905-2.021,2.021S8.884,12.021,10,12.021s2.021-0.905,2.021-2.021
-								S11.116,7.979,10,7.979z M10,11.011c-0.558,0-1.011-0.452-1.011-1.011S9.442,8.989,10,8.989S11.011,9.441,11.011,10
-								S10.558,11.011,10,11.011z"></path>
-                            </svg>
-                        </div>
-                    </div>
-                    <div className="cardBody7">
-                        <p className="cardBody8">Detached house • 5y old</p>
-                        <p className="cardBody9">$750,000</p>
-                        <p className="cardBody10">742 Evergreen Terrace</p>
-                    </div>
-                    <div className="cardBody12">
-                        <div className="cardBody13">
-                            <svg className="cardBody11" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M0 16L3 5V1a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v4l3 11v5a1 1 0 0 1-1 1v2h-1v-2H2v2H1v-2a1 1 0 0 1-1-1v-5zM19 5h1V1H4v4h1V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1h2V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1zm0 1v2a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1V6h-2v2a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V6H3.76L1.04 16h21.92L20.24 6H19zM1 17v4h22v-4H1zM6 4v4h4V4H6zm8 0v4h4V4h-4z"></path>
-                            </svg>
-                            <p><span className="cardBody14">3</span> Bedrooms</p>
-                        </div>
-                        <div className="cardBody13">
-                            <svg className="cardBody11" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M17.03 21H7.97a4 4 0 0 1-1.3-.22l-1.22 2.44-.9-.44 1.22-2.44a4 4 0 0 1-1.38-1.55L.5 11h7.56a4 4 0 0 1 1.78.42l2.32 1.16a4 4 0 0 0 1.78.42h9.56l-2.9 5.79a4 4 0 0 1-1.37 1.55l1.22 2.44-.9.44-1.22-2.44a4 4 0 0 1-1.3.22zM21 11h2.5a.5.5 0 1 1 0 1h-9.06a4.5 4.5 0 0 1-2-.48l-2.32-1.15A3.5 3.5 0 0 0 8.56 10H.5a.5.5 0 0 1 0-1h8.06c.7 0 1.38.16 2 .48l2.32 1.15a3.5 3.5 0 0 0 1.56.37H20V2a1 1 0 0 0-1.74-.67c.64.97.53 2.29-.32 3.14l-.35.36-3.54-3.54.35-.35a2.5 2.5 0 0 1 3.15-.32A2 2 0 0 1 21 2v9zm-5.48-9.65l2 2a1.5 1.5 0 0 0-2-2zm-10.23 17A3 3 0 0 0 7.97 20h9.06a3 3 0 0 0 2.68-1.66L21.88 14h-7.94a5 5 0 0 1-2.23-.53L9.4 12.32A3 3 0 0 0 8.06 12H2.12l3.17 6.34z"></path>
-                            </svg>
-                            <p><span className="cardBody14">2</span> Bathrooms</p>
-                        </div>
-                    </div>
-                    <div className="cardBody15">
-                        <div className="cardBody16">Realtor</div>
-                        <div className="cardBody17">
-                            <div className="bg-cover bg-center w-10 h-10 rounded-full mr-3" style={{backgroundImage: "url(https://images.unsplash.com/photo-1500522144261-ea64433bbe27?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=751&q=80)"}}>
-                            </div>
-                            <div>
-                                <p className="cardBody14">Tiffany Heffner</p>
-                                <p className="cardBody18">(555) 555-4321</p>
-                            </div>
-                        </div>
-                    </div>
+
+function Car() {
+  const dispatch = useDispatch();
+  const user = JSON.parse(localStorage.getItem('profile'));
+  let id = window.location.pathname.split("/")[2];
+  const [dateRange, setdateRange] = useState({
+    startDate: null,
+    endDate: null
+  });
+  const [postData, setPostData] = useState({ startDate: '', endDate: '', days: '' });
+  const posts = useSelector((state) => state.posts);
+  useEffect(() => {
+      dispatch(getPosts());
+  }, [dispatch]);
+
+  const [focus, setFocus] = useState(null);
+
+  const { startDate, endDate } = dateRange;
+
+  const handleOnDateChange = (startDate, endDate) => setdateRange(startDate, endDate);
+
+
+  let sdate = moment(startDate).toString().split(" ");
+  let edate = moment(endDate).toString().split(" ");
+
+  let startdatefinal = sdate[1]+" "+sdate[2]+" "+sdate[3];
+  let enddatefinal = edate[1]+" "+edate[2]+" "+edate[3];
+
+  
+  let data1 = new Date(startDate?._d).getTime();
+  let data2 = new Date(endDate?._d).getTime();
+  
+  let days = (data2-data1)/ (1000 * 3600 * 24);
+
+  if(!posts){
+    <div>LOADING...</div>
+  }
+  return (
+    <div>
+     <Nav />
+    {posts.map((post) => 
+       post._id === id && (
+        <div className="car-show-container">
+        <div className="car-show-banner">
+          <div
+            className="car-show-img-banner"
+            style={{ backgroundImage: `url(${post.selectedFile})` }}
+          ></div>
+        </div>
+        <br />
+        <br />
+        <br />
+        <div className="car-show-main-section">
+          <div className="car-show-left-container">
+            <div className="car-show-grid-container">
+              <div className="item-1">
+                <div className="car-show-left-sec">The car</div>
+              </div>
+              <div className="item-2">
+                <span className="car-show-title">{post.title}</span>
+                <div className="car-show-star-wrapper">
+                  <div className="car-show-star-inner">
+                    <div className="car-show-left-full-star"></div>
+                    <div className="car-show-left-full-star"></div>
+                    <div className="car-show-left-full-star"></div>
+                    <div className="car-show-left-full-star"></div>
+                    <div className="car-show-left-full-star"></div>
+                    <span className="car-show-top-trips">∙ {Math.floor(Math.random()*100)} trips</span>
+                  </div>
                 </div>
+                <div className="car-show-std-feat-container">
+                  <div className="car-show-std-feat-grid">
+                    <div className="item-1">
+                      <div
+                        title="Manual transmission"
+                        className="feature-manual-trans"
+                      ></div>
+                      <span className="car-show-features-standard-text">
+                        Manual transmission
+                      </span>
+                    </div>
+                    <div className="item-2">
+                      <div className="feature-doors"></div>
+                      <span className="car-show-features-standard-text">
+                        2 doors
+                      </span>
+                    </div>
+                    <div className="item-3">
+                      <div className="feature-seats"></div>
+                      <span className="car-show-features-standard-text">
+                        4 seats
+                      </span>
+                    </div>
+                    <div className="item-4">
+                      <div className="feature-mpg"></div>
+                      <span className="car-show-features-standard-text">
+                        24 MPG
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="item-3">
+                <div className="car-show-left-sec">Hosted by</div>
+              </div>
+              <div className="item-4">
+                <div className="car-show-host-wrapper">
+                  <div className="car-show-host-avatar"><Avatar></Avatar></div>
+                  <div className="car-show-right-of-avatar">
+                    <div className="car-show-left-content">{post.name}</div>
+                    <br />
+                    <div className="car-show-left-content-trips">
+                      {Math.floor(Math.random()*100)} trips - Joined April 2021
+                    </div>
+                    <br />
+                    <div className="car-show-left-content-response">
+                      Typically responds in {Math.floor(Math.random()*10)} minutes
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="item-5">
+                <div className="car-show-left-sec">Description</div>
+              </div>
+              <div className="item-6">
+                <div className="car-show-left-content">
+                  {post.message}
+                </div>
+              </div>
+              <div className="item-7">
+                <div className="car-show-left-sec">Features</div>
+              </div>
+              <div className="item-8">
+                <div className="car-show-left-content">
+                  <span
+                    title="Audio input"
+                    className="feature-audio-input"
+                  ></span>
+                  <span>Audio input</span>
+                  <br />
+                  <span title="GPS" className="feature-gps"></span>
+                  <span>GPS</span>
+                  <br />
+                  <span
+                    title="Longterm car"
+                    className="feature-longterm-car"
+                  ></span>
+                  <span>Longterm car</span>
+                  <br />
+                  <span title="Toll pass" className="feature-toll-pass"></span>
+                  <span>Toll pass</span>
+                  <br />
+                </div>
+              </div>
+              <div className="item-9">
+                <div className="car-show-left-sec">Reviews</div>
+              </div>
+              <div className="item-10">
+                <div className="car-show-left-content">
+                  <div className="car-show-star-wrapper">
+                    <div className="car-show-star-inner">
+                      <div className="car-show-left-full-star"></div>
+                      <div className="car-show-left-full-star"></div>
+                      <div className="car-show-left-full-star"></div>
+                      <div className="car-show-left-full-star"></div>
+                      <div className="car-show-left-full-star"></div>
+                      ∙&nbsp;{Math.floor(Math.random()*10)} rating
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
+          <div className="car-show-right-container">
+            <span className="car-show-usd">&euro;</span>
+            <span className="car-show-price">{post.tags}</span>&nbsp;
+            <span className="car-show-per-day">per day</span>
+            <div className="car-show-distance-container">
+              <div className="car-show-rental">
+
+
+            {user?.result ? (
+              (post?.likes?.length === 0)  ? ( 
+                <div className="datemain">    
+                    <DateRangePicker
+                        onClose={()=> setPostData({
+                          ...postData,
+                          startDate: startdatefinal,
+                          endDate: enddatefinal,
+                          days: days,
+                        }
+                        )}
+                        startDatePlaceholderText="Start"
+                        startDate={startDate}
+                        onDatesChange={handleOnDateChange}
+                        endDatePlaceholderText="End"
+                        endDate={endDate}
+                        numberOfMonths={1}
+                        hideKeyboardShortcutsPanel
+                        focusedInput={focus}
+                        onFocusChange={focus => setFocus(focus)}
+                        startDateId="startDateMookh"
+                        endDateId="endDateMookh"
+                        minimumNights={1}
+                    />
+                    <button className="rental-cancel-btn" disabled={!user?.result} onClick={(e) => dispatch(likePost(post._id),updatePost(post._id,postData))} >BookCar</button>
+                </div>
+              ) : (
+                <>
+                <div>Car Booked</div>
+                
+                <div>{post.likes}</div>
+                </>
+              )
+                
+            ):
+                <div className="rental-form-login">
+                    <button>Please Login to Rent!</button>
+                </div>
+            }
+                
+
+              </div>
+              <div className="car-show-distance-header">Distance included</div>
+              <div className="car-show-distance">
+                <div className="car-show-distance-time">
+                  Day
+                  <br />
+                  Week
+                  <br />
+                  Month
+                </div>
+                <div className="car-show-distance-mi">
+                  200 mi
+                  <br />
+                  1000 mi
+                  <br />
+                  2250 mi
+                </div>
+              </div>
+            </div>
+            <div className="car-show-insurance-container">
+              <div className="car-show-insurance-header">
+                Insurance provided via
+              </div>
+              <div className="car-show-insurance-co">Wiener Vienna Insurance</div>
+            </div>
+            <button className="car-show-add-fav-btn">
+              <img alt="" className="car-show-add-fav-icon" src="https://github.com/fsiino/thuro/blob/master/app/assets/images/add-fav-transp.png?raw=true"/>
+              &nbsp;Add to favorites
+            </button>
+            <br />
+          </div>
         </div>
-    </div>
-        </div>
-    )
+        <br />
+      </div>
+      )
+      )}
+  </div>
+  )
+
 }
 
-export default Car
+export default Car;

@@ -15,6 +15,9 @@ const postSchema = mongoose.Schema({
     doors: String,
     seats: String,
     transmision: String,
+    startDate: String,
+    endDate: String,
+    days: String,
 })
 
 var Post = mongoose.model('Post', postSchema);

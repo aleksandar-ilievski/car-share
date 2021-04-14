@@ -1,30 +1,16 @@
 import React from 'react';
 import { Button } from '@material-ui/core/';
-import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import DeleteIcon from '@material-ui/icons/Delete';
-import ThumbUpAltOutlined from '@material-ui/icons/ThumbUpAltOutlined';
 import { useDispatch } from 'react-redux';
+import {Link} from "react-router-dom";
 import moment from 'moment';
 
-import { likePost, deletePost } from '../../../actions/posts';
+import { deletePost } from '../../../actions/posts';
 
 const Post = ({ post, setCurrentId }) => {
   const dispatch = useDispatch();
   const user = JSON.parse(localStorage.getItem('profile'));
 
-  const Likes = () => {
-    if (post.likes.length > 0) {
-      return post.likes.find((like) => like === user?.result?._id)
-        ? (
-          <><ThumbUpAltIcon fontSize="small" />&nbsp;{post.likes.length > 2 ? `You and ${post.likes.length - 1} others` : `${post.likes.length} like${post.likes.length > 1 ? 's' : ''}` }</>
-        ) : (
-          <><ThumbUpAltOutlined fontSize="small" />&nbsp;{post.likes.length} {post.likes.length === 1 ? 'Like' : 'Likes'}</>
-        );
-    }
-
-    return <><ThumbUpAltOutlined fontSize="small" />&nbsp;Like</>;
-  };
-  
   return (
 <div className="cardBody">
         <div className="cardBody1">
@@ -45,11 +31,13 @@ const Post = ({ post, setCurrentId }) => {
                             </div>}
                         </div>
                     </div>
+                    <Link style={{ textDecoration: 'none'}} to={{pathname: `/car/${post._id}`}}>
                     <div className="cardBody7">
                         <p className="cardBody8">{post.title}</p>
-                        <p className="cardBody9">&euro;{post.tags}</p>
+                        <p className="cardBody9">&euro;{post.tags} /day</p>
                         <p className="cardBody10">Posted {moment(post.createdAt).fromNow()}</p>
                     </div>
+                    </Link>
                     <div className="cardBody12">
                         <div className="cardBody13">
                             <svg className="cardBody11" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100.75 100.749">
@@ -79,12 +67,9 @@ const Post = ({ post, setCurrentId }) => {
                             </div>
                         </div>
                     </div>
-                    <div style={{display:"flex"}}>
-                    <Button size="small" color="primary" disabled={!user?.result} onClick={() => dispatch(likePost(post._id))}>
-                      <Likes />
-                    </Button>
+                    <div className="cardEnd" style={{display:"flex"}}>                    
                       {(user?.result?._id === post?.creator) && (
-                      <Button size="small" color="secondary" onClick={() => dispatch(deletePost(post._id))}>
+                      <Button variant="contained" size="small" color="secondary" style={{width: "100%"}} onClick={() => dispatch(deletePost(post._id))}>
                         <DeleteIcon fontSize="small" /> Delete
                       </Button>
                       )}

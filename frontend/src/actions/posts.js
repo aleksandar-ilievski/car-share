@@ -1,5 +1,15 @@
-import { FETCH_ALL, CREATE, UPDATE, DELETE, LIKE } from '../constants/actionType';
+import { FETCH_ONE, FETCH_ALL, CREATE, UPDATE, DELETE, LIKE } from '../constants/actionType';
 import * as api from '../api/index.js';
+
+export const getPost = (id) => async (dispatch) => {
+  try {
+    const { data } = await api.fetchPost(id);
+
+    dispatch({ type: FETCH_ONE, payload: data });
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 export const getPosts = () => async (dispatch) => {
   try {

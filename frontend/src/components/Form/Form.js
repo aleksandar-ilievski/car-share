@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { TextField, Button, Typography, Paper } from '@material-ui/core';
+import { Button, Typography, Paper } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import FileBase from 'react-file-base64';
 
@@ -36,22 +36,22 @@ const Form = ({ currentId, setCurrentId }) => {
     <Paper className={classes.paper} style={{display:"flex", alignItems:"center", textAlign:"center", overflow:"hidden"}}>
     <form onSubmit={handleSubmit}>
       <Typography variant="h6">{currentId ? `Editing "${post.title}"` : 'List your car'}</Typography>
-      <label for="name">Name</label>
+      <label>Owner Name</label>
       <input type="text" name="name" style={{width:"100%"}} placeholder="Name" value={postData.name} onChange={(e) => setPostData({ ...postData, name: e.target.value })} />
-      <label for="title">Title</label>
+      <label>Car Model</label>
       <input type="text" name="title" style={{width:"100%"}} placeholder="Title" value={postData.title} onChange={(e) => setPostData({ ...postData, title: e.target.value })} />
-      <label for="description">Description</label>
+      <label>Description</label>
       <textarea name="description" cols="22" rows="4"  placeholder="Description" style={{resize: "none", width:"100%"}} value={postData.message} onChange={(e) => setPostData({ ...postData, message: e.target.value })}></textarea>
-      <label for="transmision">Transmision:</label>
+      <label>Transmision:</label>
       <select name="transmision">
         <option value="Automatic">Automatic</option>
         <option value="Manual">Manual</option>
       </select>
-      <label for="doors">Doors</label>
+      <label>Doors</label>
       <input type="number" name="doors" style={{width:"100%"}} value={postData.doors} onChange={(e) => setPostData({ ...postData, doors: e.target.value})} />
-      <label for="seats">Seats</label>
+      <label>Seats</label>
       <input type="number" name="seats" style={{width:"100%"}} value={postData.seats} onChange={(e) => setPostData({ ...postData, seats: e.target.value})} />
-      <label for="price">Price</label>
+      <label>Price</label>
       <input type="number" name="price" style={{width:"100%"}} value={postData.tags} onChange={(e) => setPostData({ ...postData, tags: e.target.value})} />
       <div className={classes.fileInput}><FileBase type="file" multiple={false} onDone={({ base64 }) => setPostData({ ...postData, selectedFile: base64 })} /></div>
         <Button className={classes.buttonSubmit} variant="contained" color="primary" size="large" type="submit" fullWidth>Submit</Button>

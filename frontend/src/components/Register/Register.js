@@ -21,7 +21,7 @@ function Register() {
     }
 
     return (
-        <div>
+        <div className="bgimg">
             <div className="content">
             <form className="form1 register" onSubmit={handleSubmit}>
                 <h2 className="heading2">Register</h2>
