@@ -125,7 +125,7 @@
 	grid-template-columns: 50% 50%;
     justify-content: space-around;
     flex-wrap: wrap;
-    width: 70%;
+    width: 90%;
     box-sizing: border-box;
     overflow-y: scroll;
     overflow-x: hidden;

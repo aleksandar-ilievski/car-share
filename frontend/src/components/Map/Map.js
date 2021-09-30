@@ -27,7 +27,7 @@ export default function Root() {
     <MapGL
       {...viewport}
       {...settings}
-      width="40vw"
+      width="65vw"
       height="70vh"
       mapStyle="mapbox://styles/mapbox/dark-v9"
       onViewportChange={setViewport}

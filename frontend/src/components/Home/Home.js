@@ -43,6 +43,7 @@ function Home() {
               country='mk'
               onSuggestionSelect={_suggestionSelect}
               resetSearch={false}
+              placeholder="City"
             />
             <div className="date1">
             <DatePicker

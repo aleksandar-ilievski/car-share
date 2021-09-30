@@ -10,6 +10,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import {Link} from "react-router-dom";
 import moment from "moment";
 import { updatePost } from "../../api";
+import Root from "../Map/Map";
 
 
 function Car() {
@@ -273,6 +274,7 @@ function Car() {
       </div>
       )
       )}
+        <div className="map"><Root /></div>
   </div>
   )
 
