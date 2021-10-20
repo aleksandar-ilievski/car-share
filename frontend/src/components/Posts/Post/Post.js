@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from '@material-ui/core/';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { useDispatch } from 'react-redux';
@@ -7,10 +7,10 @@ import moment from 'moment';
 
 import { deletePost } from '../../../actions/posts';
 
-const Post = ({ post, setCurrentId }) => {
+const Post = ({ post, setCurrentId, openModal }) => {
   const dispatch = useDispatch();
   const user = JSON.parse(localStorage.getItem('profile'));
-
+  
   return (
 <div className="cardBody">
         <div className="cardBody1">
@@ -19,7 +19,7 @@ const Post = ({ post, setCurrentId }) => {
                     <div className="cardBody4" style={{backgroundImage: `url(${post.selectedFile})` ||'url(https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png)'}}>
                         <div className="cardBody5">
                         {(user?.result?._id === post?.creator && window.location.pathname ==="/profile" ) && <div className="cardBtn" onClick={() => setCurrentId(post._id)} style={{ color: 'white' }} size="small">
-                            <svg className="cardBody6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <svg onClick={openModal} className="cardBody6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <path d="M3.936,7.979c-1.116,0-2.021,0.905-2.021,2.021s0.905,2.021,2.021,2.021S5.957,11.116,5.957,10
 								S5.052,7.979,3.936,7.979z M3.936,11.011c-0.558,0-1.011-0.452-1.011-1.011s0.453-1.011,1.011-1.011S4.946,9.441,4.946,10
 								S4.494,11.011,3.936,11.011z M16.064,7.979c-1.116,0-2.021,0.905-2.021,2.021s0.905,2.021,2.021,2.021s2.021-0.905,2.021-2.021
@@ -63,7 +63,7 @@ const Post = ({ post, setCurrentId }) => {
                             </div>
                             <div>
                                 <p className="cardBody14">{post.name}</p>
-                                <p className="cardBody18">{post.message}</p>
+                                <p className="cardBody18" id="txt18">{post.message}</p>
                             </div>
                         </div>
                     </div>

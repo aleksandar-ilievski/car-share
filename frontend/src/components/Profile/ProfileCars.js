@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import Post from '../Posts/Post/Post';
 import useStyles from '../Posts/styles';
 
-const ProfileCars = ({ setCurrentId }) => {
+const ProfileCars = ({ setCurrentId, openModal }) => {
   const posts = useSelector((state) => state.posts);
   const classes = useStyles();
   const user = JSON.parse(localStorage.getItem('profile'));
@@ -17,7 +17,7 @@ const ProfileCars = ({ setCurrentId }) => {
         {posts.map((post) => (
           (user?.result?._id === post?.creator) && 
             <Grid key={post._id} item xs={12} sm={6} md={6}>
-            <Post post={post} setCurrentId={setCurrentId} />
+            <Post post={post} setCurrentId={setCurrentId} openModal={openModal} />
           </Grid>
         ))}
       </Grid>

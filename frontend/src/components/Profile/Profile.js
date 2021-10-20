@@ -11,6 +11,11 @@ import "./profile.css";
 const Profile = () => {
   const [currentId, setCurrentId] = useState(0);
   const dispatch = useDispatch();
+  const [showModal, setShowModal] = useState(false);
+
+  const openModal = () => {
+    setShowModal(prev => !prev);
+  };
 
   useEffect(() => {
     dispatch(getPosts());
@@ -22,12 +27,13 @@ const Profile = () => {
     <div className="profbg">
     <Grow in>
       <Container>
+            <Form currentId={currentId} setCurrentId={setCurrentId} showModal={showModal} setShowModal={setShowModal}/>
         <Grid container justify="space-between" alignItems="stretch" spacing={3}>
-          <Grid item xs={12} sm={7}>
-            <ProfileCars setCurrentId={setCurrentId} />
+          <Grid item xs={12} sm={8}>
+            <ProfileCars setCurrentId={setCurrentId} openModal={openModal}/>
           </Grid>
           <Grid item xs={12} sm={4}>
-            <Form currentId={currentId} setCurrentId={setCurrentId} />
+            <button onClick={openModal} className="button-28">Add New Car</button>
           </Grid>
         </Grid>
       </Container>
