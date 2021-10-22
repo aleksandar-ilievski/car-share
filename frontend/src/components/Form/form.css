@@ -24,10 +24,15 @@
   
   .modalContainer form {
     display: inline-block;
-    text-align: center;
     margin-top: 10px;
     overflow: scroll;
   }
+
+  .modalContainer form label {
+    text-align: start;
+    margin: 25px 0 0;
+  }
+
   .btnClose{
       display: flex;
       justify-content: end;
@@ -35,6 +40,14 @@
   .closeBtn {
     border: solid 1px red;
     color: red;
+    margin: 1px;
+    width: 40px;
+    border-radius: 1px;
+  }
+  .closeBtn:hover {
+    border: solid 1px red;
+    background-color: red;
+    color: white;
     margin: 1px;
     width: 40px;
     border-radius: 1px;
@@ -78,3 +91,8 @@
   #cancelBtn {
     background-color: crimson;
   }
+
+  .dsp{
+    display: flex;
+  }
+  

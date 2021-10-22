@@ -13,11 +13,12 @@ const Rental = () => {
   return (
     <div>
       <Nav />
+      <br/>
+        <h2>Your Rentals</h2>
       {posts.map((post) => {
         return (
           post.likes?.find((like) => like === user?.result?._id) && (
             <div className="rental-index-container">
-              <h2>Your Rentals</h2>
               <div className="rental-index-tile">
                 <div className="car-tile-container">
                     <div className="car-index-photo-wrapper">
