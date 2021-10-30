@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Button, Typography, Paper } from '@material-ui/core';
+import React, { useState, useEffect } from 'react';
+import { Button } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import FileBase from 'react-file-base64';
 import "./form.css";
@@ -8,7 +8,7 @@ import useStyles from './styles';
 import { createPost, updatePost } from '../../actions/posts';
 
 const Form = ({ currentId, setCurrentId, showModal, setShowModal }) => {
-  const [postData, setPostData] = useState({ name: '', title: '', message: '', tags: '', selectedFile: '' });
+  const [postData, setPostData] = useState({ name: '', title: '', message: '', city: '', tags: '', selectedFile: '' });
   const post = useSelector((state) => (currentId ? state.posts.find((message) => message._id === currentId) : null));
   const dispatch = useDispatch();
   const classes = useStyles();
@@ -19,7 +19,7 @@ const Form = ({ currentId, setCurrentId, showModal, setShowModal }) => {
 
   const clear = () => {
     setCurrentId(0);
-    setPostData({ name: '', title: '', message: '', tags: '', selectedFile: '', doors:'', seats:'', transmision:'' });
+    setPostData({ name: '', title: '', message: '', city: '', tags: '', selectedFile: '', doors:'', seats:'', transmision:'' });
   };
 
   const handleSubmit = async (e) => {
@@ -32,7 +32,7 @@ const Form = ({ currentId, setCurrentId, showModal, setShowModal }) => {
       clear();
     }
   };
-  const modalRef = useRef();
+  //const modalRef = useRef();
 
 
   const closeModal = () => {
@@ -61,7 +61,7 @@ const Form = ({ currentId, setCurrentId, showModal, setShowModal }) => {
           <input type="text" name="city" style={{width:"100%"}} placeholder="City" value={postData.city} onChange={(e) => setPostData({ ...postData, city: e.target.value })} />
           
           <label>Transmision:</label>
-          <select name="transmision">
+          <select name="transmision" onChange={(e) => setPostData({ ...postData, transmision: e.target.value })}>
             <option value="Automatic">Automatic</option>
             <option value="Manual">Manual</option>
           </select>

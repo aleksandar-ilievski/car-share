@@ -40,7 +40,7 @@ export default function Auth() {
                 <div className="img">
                 <div className="img__text">
                     <h2>New here?</h2>
-                    <p>Sign up and discover best vehicle for you!</p>
+                    <p>Sign up and find the best vehicle for you!</p>
                 </div>
                 <div className="img__btn">
                     <Link to="/register">

@@ -5,12 +5,18 @@ import PostMessage from '../models/post.js';
 
 const router = express.Router();
 
-export const getPosts = async (req, res) => { 
+export const getPosts = async (req, res) => {
     try {
         const pageSize = 6;
-        const page = parseInt(req.query.page || "0"); 
+        const search = req.query.search || null;
+        const page = parseInt(req.query.page || "0");
+        const sorts = req.query.sorts;
         const total =await PostMessage.countDocuments({});   
-        const postMessages = await PostMessage.find().limit(pageSize).skip(pageSize * page);
+        const postMessages = await PostMessage
+        .find(search?{ city: search}:null)
+        .sort(sorts).collation({locale: "en_US", numericOrdering: true})
+        .limit(pageSize)
+        .skip(pageSize * page);
         res.status(200).json({numberPages:Math.ceil(total/pageSize),data:postMessages});
     } catch (error) {
         res.status(404).json({ message: error.message });

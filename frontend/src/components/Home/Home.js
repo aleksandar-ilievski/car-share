@@ -20,10 +20,9 @@ function Home() {
     setCity(result);
   } 
   function searchCar(){
-    let dateStart = startDate ? startDate.toDateString() : new Date().toDateString()
-    let dateEnd = endDate ? endDate.toDateString() : new Date().toDateString()
-    console.log(city+", "+dateStart+", "+dateEnd);
-    history.push('/carlist');
+    
+    console.log(city);
+    history.push({pathname:'/carlist'});
   }
   return (
     <div className="bgimg">

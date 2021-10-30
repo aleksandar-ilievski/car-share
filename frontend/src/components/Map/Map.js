@@ -32,12 +32,25 @@ export default function Root() {
       mapStyle="mapbox://styles/mapbox/dark-v9"
       onViewportChange={setViewport}
       mapboxApiAccessToken={MAPBOX_TOKEN}  
-    > <Marker latitude={42.134734} longitude={21.722253}>
-      <img alt="pin" src="/images/pin.webp" style={{width :"25px", height: "25px"}} /></Marker><Marker latitude={42.136500} longitude={21.724259} >
-      <img alt="pin" src="/images/pin.webp" style={{width :"25px", height: "25px"}} /></Marker><Marker latitude={42.138513} longitude={21.719270}>
-      <img alt="pin" src="/images/pin.webp" style={{width :"25px", height: "25px"}} /></Marker><Marker latitude={42.135302} longitude={21.729336} >
-      <img alt="pin" src="/images/pin.webp" style={{width :"25px", height: "25px"}} /></Marker><Marker latitude={42.129490} longitude={21.721457} >
-      <img alt="pin" src="/images/pin.webp" style={{width :"25px", height: "25px"}} /></Marker><Marker latitude={42.134741} longitude={21.717212} >
-      <img alt="pin" src="/images/pin.webp" style={{width :"25px", height: "25px"}} /></Marker> </MapGL>
+    > 
+      <Marker latitude={42.134734} longitude={21.722253}>
+        <img alt="pin" src="/images/pin.webp" style={{width :"25px", height: "25px"}} />
+      </Marker>
+      {/* <Marker latitude={42.136500} longitude={21.724259} >
+        <img alt="pin" src="/images/pin.webp" style={{width :"25px", height: "25px"}} />
+      </Marker>
+      <Marker latitude={42.138513} longitude={21.719270}>
+        <img alt="pin" src="/images/pin.webp" style={{width :"25px", height: "25px"}} />
+      </Marker>
+      <Marker latitude={42.135302} longitude={21.729336} >
+        <img alt="pin" src="/images/pin.webp" style={{width :"25px", height: "25px"}} />
+      </Marker>
+      <Marker latitude={42.129490} longitude={21.721457} >
+        <img alt="pin" src="/images/pin.webp" style={{width :"25px", height: "25px"}} />
+      </Marker>
+      <Marker latitude={42.134741} longitude={21.717212} >
+        <img alt="pin" src="/images/pin.webp" style={{width :"25px", height: "25px"}} />
+      </Marker>  */}
+    </MapGL>
   );
 }
